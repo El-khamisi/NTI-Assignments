@@ -1,0 +1,43 @@
+Requirements of day3
+
+
+-------- yargs commands To-Do ------------
+
+//Function_name (args)         : return type
+
+
+Add(id, name, grades, comment) : void    
+Read(id)                       : A Students-object  //IN FORM OF{id: '', name: '', grades: '', comment: '',total: ''}
+Delete(id)                     : void
+List()                         : Array of Students  //IN FORM OF{name: '',total: ''}
+
+
+student_shcema{
+    id: {
+        type: number,
+        required: true,
+        primaryKey: true
+    },
+    name: {
+        type: string, 
+        required: true
+    },
+    grades: {
+        type: [int],
+        required: true
+    },
+    comment: {
+        type: string
+    },
+    total: {
+        //Sum of array of grades
+        type: number
+    }
+}
+
+
+
+
+
+
+
