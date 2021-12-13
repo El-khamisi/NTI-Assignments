@@ -31,6 +31,8 @@ const newsapi = (contry, callback) => {
     request({ url: urlString, json: true }, (error, response) => {
         if (!error && response.body.status === 'ok') {
             callback(undefined, response.body.articles)
+        }else{
+            console.log(error);
         }
     });
 }
@@ -41,7 +43,10 @@ app.get('/', (req, res, next) => {
         const searchWord = 'egypt';
 
         newsapi(searchWord, (error, data) => {
-            res.render('index', {articles: data});
+            if(data)
+                res.render('index', {articles: data});
+            else 
+                console.log(error)
         });
     }
 
