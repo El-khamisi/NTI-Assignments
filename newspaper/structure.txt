@@ -1,0 +1,72 @@
+newsSchema :{
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        default: 'DEFAULT TITLE'
+    },
+    description: {
+        type: String,
+        default: 'default description'
+    },
+    dateOfCreated: {
+        type: Date,
+        default: Date.now
+    }, 
+    byReporter: {
+        type: mongo.ObjectId,
+        ref: 'reporter',
+        required: true
+    },
+    thumbnails: {
+        type: Buffer
+    }
+}
+
+
+reporterSchema: {
+
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    age: {
+        type: Number,
+        default: 0000
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+       
+    },
+    phone:{
+        type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true,
+        trim: true,
+        
+    },
+    thumbnails: {
+        type: Buffer
+    },
+    tokens: [
+        {
+            type, String,
+            required: true
+        }
+    ],
+    postedNews:[
+        {
+        type: mongo.ObjectId,
+        ref: 'news'
+        }
+    ]
+
+}

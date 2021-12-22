@@ -17,10 +17,12 @@ exports.postTask = (req, res, next) => {
     };
 
 
-    const newTask = new taskModel(entity);
+    // const newTask = new taskModel(entity);
+    const newTask = new taskModel({...req.body, onwer:req.user._id});
+
     newTask.save()
         .then((data) => 
-            res.status(200).send(`Task with title ${entity.title} has been inserted succsefuly`)
+            res.status(201).send(entity)
         )
         .catch(() => 
             res.status(400).send(`There is an error with ${entity.title}`)
