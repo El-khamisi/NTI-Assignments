@@ -10,6 +10,8 @@ import { HomeComponent } from './views/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserComponent } from './views/user/user.component';
 import { UpdateComponent } from './views/update/update.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { UpdateComponent } from './views/update/update.component';
     AppComponent,
     UpdateComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

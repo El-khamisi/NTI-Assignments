@@ -14,7 +14,7 @@ export class UpdateComponent implements OnInit {
   constructor(private userService:UserService , private route:ActivatedRoute, private routing:Router, private fb:FormBuilder) { }
 
   formFields = this.fb.group({
-    name:[''],
+    username:[''],
     company:['']
   });
 

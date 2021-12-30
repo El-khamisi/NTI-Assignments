@@ -1,44 +1,53 @@
 <form class="mt-5 container" [formGroup]="formFields" (ngSubmit)="addUser(formFields.value)">
 
-    <div class="mb-3">
-        <label for="firstname" class="form-label">User Name: </label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your User Name"
-            formControlName="username" />
+    <div class="form-group row">
+        <label for="username" class="col-sm-1 col-form-label">Username: </label>
 
-        <div class="error d-flex justify-content-center" *ngIf="fields['username'].touched && fields['username'].invalid">
-            <div *ngIf="fields['username'].errors?.['required']">
-                User Name is required
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username"
+                formControlName="username" />
+
+            <div class="error d-flex justify-content-center"
+                *ngIf="fields['username'].touched && fields['username'].invalid">
+                <div class="text-danger" *ngIf="fields['username'].errors?.['required']">
+                    username is required
+                </div>
+
+                <div class="text-danger" *ngIf="fields['username'].errors?.['minlength']">
+                    username minimum length is
+                    {{fields['username'].errors?.['minlength'].requiredLength}}
+                </div>
             </div>
-
-            <div *ngIf="fields['username'].errors?.['minlength']">
-                User Name minimum length is
-                {{fields['username'].errors?.['minlength'].requiredLength}}
-            </div>
-
         </div>
     </div>
 
 
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your E-mail"
-            formControlName="email" />
+    <div class="form-group row">
+        <label for="email" class="col-sm-1 form-label">Email</label>
 
-        <div class="error d-flex justify-content-center" *ngIf="fields['email'].touched && fields['email'].invalid">
-            <div *ngIf="fields['email'].errors?.['required']">
-                Email is required
-            </div>
-            <div *ngIf="fields['email'].errors?.['email']">
-                Enter a valied email
-            </div>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your E-mail"
+                formControlName="email" />
 
+            <div class="error d-flex justify-content-center" *ngIf="fields['email'].touched && fields['email'].invalid">
+                <div class="text-danger" *ngIf="fields['email'].errors?.['required']">
+                    Email is required
+                </div>
+                <div class="text-danger" *ngIf="fields['email'].errors?.['email']">
+                    Enter a valied email
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="formFields.invalid">
-        Submit
-    </button>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary col-6" [disabled]="formFields.invalid">
+            Submit
+        </button>
+    </div>
 
 </form>
 
@@ -47,12 +56,18 @@
         <div class="card text-center">
             <div class="card-body">
                 <h3 class="card-title">{{user.username}}</h3>
-                <h4 class="card-title">Name: {{user.company.name}}</h4>
-                <h5 class="card-text">City: {{user.address.city}}</h5>
-                <p  class="card-text"> GEO[ Lat:{{user.address.geo.lat}}, lng:{{user.address.geo.lng}}</p>
-                <a routerLink="/user/{{user.id}}" class="btn btn-primary">Read More Info.</a>
-                <a routerLink="/update/{{user.id}}" class="btn btn-success">Edit</a>
-                <a class="btn btn-danger" (click)="deleteUser(user.id, i)">Delete</a>
+                <h4 class="card-title">Company: <small>{{user.company?.name}}</small></h4>
+                <h5 class="card-text">Email: <small>{{user.email}}</small></h5>
+                <h5 class="card-text">City: <small>{{user.address?.city}}</small></h5>
+                
+                <p class="card-text"> GEO <small>[Lat:{{user.address?.geo.lat}}, lng:{{user.address?.geo.lng}}]</small></p>
+
+                <div class="d-flex justify-content-between">
+                    <a routerLink="/user/{{user.id}}" class="btn btn-outline-primary">Read More</a>
+                    <a routerLink="/update/{{user.id}}" class="btn btn-outline-success">Edit</a>
+                    <a class="btn btn-outline-danger" (click)="deleteUser(user.id, i)">Delete</a>
+                </div>
+
             </div>
         </div>
     </div>

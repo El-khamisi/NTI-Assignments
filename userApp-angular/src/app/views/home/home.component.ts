@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   formFields = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required, Validators.email]],
   }) ;
 
 
