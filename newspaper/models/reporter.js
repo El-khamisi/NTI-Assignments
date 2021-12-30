@@ -59,11 +59,6 @@ const reporterSchema = mongoose.Schema({
 });
 
 
-reporterSchema.virtual('vNews',{
-    ref:'news',   
-    localField:'_id',   
-    foreignField:'byReporter'
-})
 
 
 reporterSchema.pre('save', async function(next){
@@ -102,4 +97,16 @@ reporterSchema.statics.findReporter = async function(email){
     return findReporter;
 }
 
+reporterSchema.methods.toJSON = function(){
+    
+    const user = this;
+
+    // Converts this document into a object
+    const userObject = user.toObject()
+
+    delete userObject.password;
+    delete userObject.tokens;
+
+    return userObject;
+}
 module.exports = mongoose.model('reporter', reporterSchema);

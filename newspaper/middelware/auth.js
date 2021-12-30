@@ -4,13 +4,16 @@ const reporter = require('../models/reporter');
 
 auth = async(req, res, next)=>{
     try{
-        const token = req.headr('Authorization').replace('Bearer', '');
-
+        
+        const token = req.header('Authorization').replace('Bearer ', '');
+        
         const decode = jwt.verify(token, process.env.SECRET_KEY);
-
-        const fReporter = await reporter.findOne({_id:decode._id, tokens: token});
-
+        
+        
+        const fReporter = await reporter.findOne({_id:decode.reporterID, tokens: token});
+        
         if(!fReporter){
+            
             throw new Error();
 
         }
@@ -18,10 +21,13 @@ auth = async(req, res, next)=>{
         req.reporter = fReporter;
         req.token = token;
 
+        
         next();
     }catch(e){
         res.status(401).send({
-            error:`Please Authenticate`
+            // error:`Please Authenticate`
+            e: e.message
+            
         })
     }
 }

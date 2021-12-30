@@ -2,7 +2,7 @@ const express = require('express');
 const router = express();
 const multer = require('multer');
 const auth = require('../middelware/auth');
-const controllers = require('../controllers/newspaper');
+const controllers = require('../controllers/reporter');
 
 
 
