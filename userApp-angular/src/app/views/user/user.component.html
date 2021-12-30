@@ -1,0 +1,13 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">{{user.username}}</div>
+    <ul>
+        <li class="list-group-item">Name: {{user.name}}</li>
+        <li class="list-group-item">E-mail: {{user.email}}</li>
+        <li class="list-group-item">Address: [Street: {{user.address.street}}, City: {{user.address.city}}]</li>
+        <li class="list-group-item">GEO: [Lat: {{user.address.geo.lat}}, Lng: {{user.address.geo.lng}}]</li>
+        <li class="list-group-item">Phone Number: {{user.phone}}</li>
+        <li class="list-group-item">Website: {{user.website}}</li>
+        <li class="list-group-item">Company: [Name: {{user.company.name}}, Catch Phrase: {{user.company.catchPharse}}, BS: {{user.company.bs}}]</li>
+    </ul>
+</div>
+
